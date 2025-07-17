@@ -1,6 +1,4 @@
-use crate::core::utils::traits::observable::Observable;
-
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Size {
     height: u16,
     width: u16,
@@ -27,33 +25,5 @@ impl Size {
 
     pub fn width(&self) -> u16 {
         self.width
-    }
-}
-
-impl Observable<Size> for Size {
-    fn subscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Size) + 'static,
-    {
-        todo!()
-    }
-
-    fn notify(&self, value: &Size) {
-        todo!()
-    }
-
-    fn unsubscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Size) + 'static,
-    {
-        todo!()
-    }
-
-    fn clear_subscriptions(&mut self) {
-        todo!()
-    }
-
-    fn has_subscriptions(&self) -> bool {
-        todo!()
     }
 }

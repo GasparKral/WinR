@@ -1,6 +1,6 @@
 use crate::core::{components::properties::position::Position, ui::cursor_tracker::CursorTracker};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Boundaries {
     p0: Position,
     p1: Position,

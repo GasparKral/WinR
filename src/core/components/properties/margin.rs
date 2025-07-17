@@ -1,6 +1,4 @@
-use crate::core::utils::traits::observable::Observable;
-
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Margin {
     pub top: u16,
     pub right: u16,
@@ -18,39 +16,56 @@ impl Margin {
         }
     }
 
-    pub fn horizontal(&self) -> u16 {
-        self.left + self.right
+    pub fn horizontal(&self, horizontal: u16) -> Self {
+        Self {
+            top: self.top,
+            right: horizontal / 2,
+            bottom: self.bottom,
+            left: horizontal / 2,
+        }
     }
 
-    pub fn vertical(&self) -> u16 {
-        self.top + self.bottom
-    }
-}
-
-impl Observable<Margin> for Margin {
-    fn subscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Margin) + 'static,
-    {
-        todo!()
+    pub fn vertical(&self, vertical: u16) -> Self {
+        Self {
+            top: vertical / 2,
+            right: self.right,
+            bottom: vertical / 2,
+            left: self.left,
+        }
     }
 
-    fn notify(&self, value: &Margin) {
-        todo!()
+    pub fn top(&self, top: u16) -> Self {
+        Self {
+            top,
+            right: self.right,
+            bottom: self.bottom,
+            left: self.left,
+        }
     }
 
-    fn unsubscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Margin) + 'static,
-    {
-        todo!()
+    pub fn right(&self, right: u16) -> Self {
+        Self {
+            top: self.top,
+            right,
+            bottom: self.bottom,
+            left: self.left,
+        }
     }
 
-    fn clear_subscriptions(&mut self) {
-        todo!()
+    pub fn bottom(&self, bottom: u16) -> Self {
+        Self {
+            top: self.top,
+            right: self.right,
+            bottom,
+            left: self.left,
+        }
     }
-
-    fn has_subscriptions(&self) -> bool {
-        todo!()
+    pub fn left(&self, left: u16) -> Self {
+        Self {
+            top: self.top,
+            right: self.right,
+            bottom: self.bottom,
+            left,
+        }
     }
 }

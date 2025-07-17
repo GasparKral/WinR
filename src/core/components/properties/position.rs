@@ -1,6 +1,4 @@
-use crate::core::utils::traits::observable::Observable;
-
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Position {
     x: u16,
     y: u16,
@@ -26,33 +24,5 @@ impl Position {
     }
     pub fn y(&self) -> u16 {
         self.y
-    }
-}
-
-impl Observable<Position> for Position {
-    fn subscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Position) + 'static,
-    {
-        todo!()
-    }
-
-    fn notify(&self, value: &Position) {
-        todo!()
-    }
-
-    fn unsubscribe<F>(&mut self, callback: F)
-    where
-        F: FnMut(&Position) + 'static,
-    {
-        todo!()
-    }
-
-    fn clear_subscriptions(&mut self) {
-        todo!()
-    }
-
-    fn has_subscriptions(&self) -> bool {
-        todo!()
     }
 }
