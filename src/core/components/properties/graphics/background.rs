@@ -1,6 +1,5 @@
-use std::hash::Hash;
-
 use crate::core::components::properties::graphics::{color::Color, gradient::Gradient};
+use std::hash::Hash;
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 enum BackgroundColor {
@@ -8,7 +7,7 @@ enum BackgroundColor {
     Gradient(Gradient),
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 enum BackgroundShape {
     Rectangle,
     RoundedRectangle { radius: f32 },

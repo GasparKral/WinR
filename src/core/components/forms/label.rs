@@ -8,9 +8,3 @@ pub struct Label {
     base: BaseComponent,
     text: TextComponent,
 }
-
-impl Renderable for Label {
-    fn render(&mut self) {
-        todo!()
-    }
-}

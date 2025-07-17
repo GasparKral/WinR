@@ -1,6 +1,6 @@
 use crate::core::components::properties::graphics::color::Color;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum GradientType {
     Linear(i16),             // Angle in degrees
     Radial((i16, i16), i16), // Center point and radius

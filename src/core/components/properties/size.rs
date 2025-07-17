@@ -1,4 +1,12 @@
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum SizePolicy {
+    #[default]
+    Fixed,
+    Fill,
+    Fit,
+}
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct Size {
     height: u16,
     width: u16,
