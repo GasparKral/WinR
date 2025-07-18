@@ -1,8 +1,10 @@
 use std::hash::Hash;
 
+use serde::{Deserialize, Serialize};
+
 use crate::core::components::properties::graphics::color::Color;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum BorderType {
     Solid,
     Dashed,
@@ -10,7 +12,7 @@ pub enum BorderType {
     Double,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Border {
     color: Color,
     width: f32,

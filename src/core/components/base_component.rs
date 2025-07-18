@@ -1,5 +1,7 @@
 use std::{cell::RefCell, hash::Hash, rc::Rc};
 
+use serde::{Deserialize, Serialize};
+
 use crate::core::{
     components::properties::{
         boundaries::Boundaries, margin::Margin, padding::Padding, position::Position, size::Size,
@@ -7,7 +9,7 @@ use crate::core::{
     window::events::{event_system::EventSystem, types::Event},
 };
 
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum BoundarySizingMode {
     ContentBox,
     #[default]
@@ -15,24 +17,27 @@ pub enum BoundarySizingMode {
     MarginBox,
 }
 
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum WrapMode {
     NoWrap,
     #[default]
     Wrap,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BaseComponent {
+    #[serde(skip)]
     id: usize,
     size: Size,
     position: Position,
+    #[serde(skip)]
     bounds: Option<Boundaries>,
     margin: Margin,
     padding: Padding,
     visible: bool,
     wrap_mode: WrapMode,
     sizing_mode: BoundarySizingMode,
+    #[serde(skip)]
     event_system: Rc<RefCell<EventSystem>>,
 }
 
@@ -174,6 +179,11 @@ impl BaseComponent {
             Position::new(bound_p2_x, bound_p2_y),
             Position::new(bound_p3_x, bound_p3_y),
         ));
+    }
+
+    pub fn inyect_event_system(&mut self, event_system: Rc<RefCell<EventSystem>>) {
+        self.id = event_system.borrow_mut().get_next_id();
+        self.event_system = event_system;
     }
 
     // Métodos que emiten eventos

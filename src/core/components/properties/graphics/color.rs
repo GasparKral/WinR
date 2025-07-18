@@ -1,6 +1,7 @@
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct RGBA {
     pub r: u8,
     pub g: u8,
@@ -18,7 +19,7 @@ impl RGBA {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct RGB {
     pub r: u8,
     pub g: u8,
@@ -38,7 +39,7 @@ impl RGB {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct HSV {
     pub h: u8,
     pub s: u8,
@@ -55,9 +56,9 @@ impl HSV {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct HEX {
-    pub value: &'static str,
+    pub value: String,
 }
 
 impl HEX {
@@ -65,17 +66,19 @@ impl HEX {
         if !Self::validate_format(value) {
             panic!("Invalid HEX color format: {}", value);
         }
-        HEX { value }
+        HEX {
+            value: value.to_string(),
+        }
     }
 
-    fn validate_format(value: &str) -> bool {
+    fn validate_format(value: &'static str) -> bool {
         // Simple validation for hex format (e.g., "#RRGGBB" or "#RGB" or "#RRGGBBAA" or "0xRRGGBB" or "0xRGB" or "0xRRGGBBAA")
         let re = Regex::new(r"^(#|0x)?([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$").unwrap();
         re.is_match(value)
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Color {
     RGBA(RGBA),
     RGB(RGB),

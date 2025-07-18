@@ -1,6 +1,8 @@
+use serde::{Deserialize, Serialize};
+
 use crate::core::components::properties::graphics::color::Color;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum GradientType {
     Linear(i16),             // Angle in degrees
     Radial((i16, i16), i16), // Center point and radius
@@ -33,7 +35,7 @@ impl GradientType {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Gradient {
     pub gradient_type: GradientType,
     pub stops: Vec<(Color, u16)>, // Color and position (0-100)

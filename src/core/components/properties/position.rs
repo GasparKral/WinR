@@ -1,4 +1,6 @@
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Position {
     x: u16,
     y: u16,

@@ -1,14 +1,16 @@
+use serde::{Deserialize, Serialize};
+
 use crate::core::components::properties::graphics::{color::Color, gradient::Gradient};
 use std::hash::Hash;
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 enum BackgroundColor {
     Solid(Color),
     Gradient(Gradient),
 }
 
-#[derive(Debug, Clone, Copy, PartialEq)]
-enum BackgroundShape {
+#[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
+pub enum BackgroundShape {
     Rectangle,
     RoundedRectangle { radius: f32 },
 }
@@ -26,7 +28,7 @@ impl Hash for BackgroundShape {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Background {
     color: BackgroundColor,
     shape: BackgroundShape,

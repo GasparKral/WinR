@@ -1,4 +1,6 @@
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum SizePolicy {
     #[default]
     Fixed,
@@ -6,7 +8,7 @@ pub enum SizePolicy {
     Fit,
 }
 
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct Size {
     height: u16,
     width: u16,

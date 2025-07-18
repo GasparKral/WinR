@@ -5,4 +5,5 @@ edition = "2024"
 
 [dependencies]
 regex = "1.11.1"
+serde = {version = "1.0.219",features = ["derive"]}
 windows = "0.61.3"

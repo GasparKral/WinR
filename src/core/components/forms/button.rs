@@ -1,7 +1,5 @@
 use std::{fmt::Debug, hash::Hash};
 
-use crate::core::components::styles::button::ButtonStyle;
-
 pub enum IconPosition {
     Start,
     End,
@@ -11,7 +9,6 @@ pub struct Button {
     /*ICON: Bitmap/SVG/Image */
     text: String,
     enabled: bool,
-    style: ButtonStyle,
     on_click: Option<Box<dyn Fn()>>,
 }
 

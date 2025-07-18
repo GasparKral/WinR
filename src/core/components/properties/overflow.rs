@@ -1,4 +1,6 @@
-#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
 pub enum Overflow {
     #[default]
     Visible,
