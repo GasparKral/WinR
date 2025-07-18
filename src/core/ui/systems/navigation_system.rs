@@ -1,2 +1,2 @@
 #[derive(Debug, Clone, Default, PartialEq, Eq, Hash)]
-pub struct TransitionManager {}
+pub struct NavigationSystem {}

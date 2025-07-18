@@ -1,14 +1,21 @@
 use std::{fmt::Debug, hash::Hash};
 
+use serde::{Deserialize, Serialize};
+
+use crate::core::components::elements::icon::Icon;
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub enum IconPosition {
     Start,
     End,
 }
 
+#[derive(Serialize, Deserialize)]
 pub struct Button {
-    /*ICON: Bitmap/SVG/Image */
+    icon: Option<(Icon, IconPosition)>,
     text: String,
     enabled: bool,
+    #[serde(skip)]
     on_click: Option<Box<dyn Fn()>>,
 }
 
