@@ -1,1 +1,3 @@
-pub trait Renderable {}
+pub trait Renderable {
+    fn render(&self);
+}

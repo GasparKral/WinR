@@ -13,6 +13,7 @@ enum BackgroundColor {
 pub enum BackgroundShape {
     Rectangle,
     RoundedRectangle { radius: f32 },
+    Circle { radius: f32 },
 }
 
 impl Eq for BackgroundShape {}
@@ -22,6 +23,10 @@ impl Hash for BackgroundShape {
             BackgroundShape::Rectangle => "Rectangle".hash(state),
             BackgroundShape::RoundedRectangle { radius } => {
                 "RoundedRectangle".hash(state);
+                radius.to_bits().hash(state);
+            }
+            BackgroundShape::Circle { radius } => {
+                "Circle".hash(state);
                 radius.to_bits().hash(state);
             }
         }

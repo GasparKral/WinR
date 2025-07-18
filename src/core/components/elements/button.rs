@@ -2,12 +2,13 @@ use std::{fmt::Debug, hash::Hash};
 
 use serde::{Deserialize, Serialize};
 
-use crate::core::components::elements::icon::Icon;
+use crate::core::components::{elements::icon::Icon, properties::position::Position};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub enum IconPosition {
     Start,
     End,
+    Located(Position),
 }
 
 #[derive(Serialize, Deserialize)]
