@@ -598,7 +598,7 @@ pub trait EventListener {
 
 ## License
 
-This project is under the [SPECIFY LICENSE] License. See the `License.md` file for more details.
+This project is under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License. See the `License.md` file for more details.
 
 ## Support and Community
 
