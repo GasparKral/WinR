@@ -6,7 +6,7 @@ use crate::core::{
     components::properties::{
         boundaries::Boundaries, margin::Margin, padding::Padding, position::Position, size::Size,
     },
-    window::events::{event_system::EventSystem, types::Event},
+    window::events::{event_system::EventSystem, types::EventType},
 };
 
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
@@ -193,7 +193,7 @@ impl BaseComponent {
             self.invalidate_bounds();
             self.event_system
                 .borrow_mut()
-                .emit(Event::ComponentResized, self.id);
+                .emit(EventType::ComponentResized, self.id);
         }
     }
 
@@ -203,7 +203,7 @@ impl BaseComponent {
             self.invalidate_bounds();
             self.event_system
                 .borrow_mut()
-                .emit(Event::ComponentMoved, self.id);
+                .emit(EventType::ComponentMoved, self.id);
         }
     }
 
@@ -213,7 +213,7 @@ impl BaseComponent {
             self.invalidate_bounds();
             self.event_system
                 .borrow_mut()
-                .emit(Event::ComponentMarginChanged, self.id);
+                .emit(EventType::ComponentMarginChanged, self.id);
         }
     }
 
@@ -223,7 +223,7 @@ impl BaseComponent {
             self.invalidate_bounds();
             self.event_system
                 .borrow_mut()
-                .emit(Event::ComponentPaddingChanged, self.id);
+                .emit(EventType::ComponentPaddingChanged, self.id);
         }
     }
 
@@ -232,7 +232,7 @@ impl BaseComponent {
             self.visible = visible;
             self.event_system
                 .borrow_mut()
-                .emit(Event::ComponentVisibilityChanged, self.id);
+                .emit(EventType::ComponentVisibilityChanged, self.id);
         }
     }
 

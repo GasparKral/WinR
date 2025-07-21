@@ -1,10 +1,10 @@
 use std::{cell::RefCell, collections::HashMap, rc::Weak};
 
-use crate::core::{utils::traits::event_listener::EventListener, window::events::types::Event};
+use crate::core::{utils::traits::event_listener::EventListener, window::events::types::EventType};
 
 #[derive(Debug, Clone, Default)]
 pub struct EventSystem {
-    listeners: HashMap<Event, Vec<Weak<RefCell<dyn EventListener>>>>,
+    listeners: HashMap<EventType, Vec<Weak<RefCell<dyn EventListener>>>>,
     next_id: usize,
 }
 
@@ -17,14 +17,14 @@ impl EventSystem {
 
     pub fn subscribe<L: EventListener + 'static>(
         &mut self,
-        event: Event,
+        event: EventType,
         listener: Weak<RefCell<L>>,
     ) {
         let listener = listener as Weak<RefCell<dyn EventListener>>;
         self.listeners.entry(event).or_default().push(listener);
     }
 
-    pub fn emit(&mut self, event: Event, caller_id: usize) {
+    pub fn emit(&mut self, event: EventType, caller_id: usize) {
         if let Some(listeners) = self.listeners.get_mut(&event) {
             // Filtrar listeners que ya no existen y notificar a los válidos
             listeners.retain(|weak_listener| {

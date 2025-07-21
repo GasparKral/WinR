@@ -2,7 +2,9 @@ use std::{fmt::Debug, hash::Hash};
 
 use serde::{Deserialize, Serialize};
 
-use crate::core::components::{elements::icon::Icon, properties::position::Position};
+use crate::core::components::{
+    base_component::BaseComponent, elements::icon::Icon, properties::position::Position,
+};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub enum IconPosition {
@@ -13,11 +15,10 @@ pub enum IconPosition {
 
 #[derive(Serialize, Deserialize)]
 pub struct Button {
+    base: BaseComponent,
     icon: Option<(Icon, IconPosition)>,
     text: String,
     enabled: bool,
-    #[serde(skip)]
-    on_click: Option<Box<dyn Fn()>>,
 }
 
 impl Debug for Button {

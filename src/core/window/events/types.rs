@@ -1,5 +1,5 @@
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub enum Event {
+pub enum EventType {
     // Component events
     ComponentAdded,
     ComponentRemoved,
@@ -37,6 +37,19 @@ pub enum Event {
     MouseButtonDoubleClicked,
     MouseMoved,
     MouseScrolled,
+
+    // Drag and Drop events
+    DragStart,
+    DragEnd,
+    DragDrop,
+    DragHover,
+    DragLeave,
+
+    // Hover events
+    Hovered,
+    Unhovered,
+    HoverEntered,
+    HoverExited,
 
     // Animation events
     AnimationStarted,
